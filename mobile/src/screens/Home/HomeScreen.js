@@ -44,7 +44,20 @@ navigation.navigate(
 
 />
 
+<Button
 
+title="Profile"
+
+onPress={()=>
+
+
+navigation.navigate(
+"Profile"
+)
+
+}
+
+/>
 
 </View>
 

@@ -15,6 +15,13 @@ from "../screens/Trainer/TrainerListScreen";
 import TrainerDetailsScreen
 from "../screens/Trainer/TrainerDetailsScreen";
 
+import ProfileScreen
+from "../screens/Profile/ProfileScreen";
+
+
+import EditProfileScreen
+from "../screens/Profile/EditProfileScreen";
+
 
 
 const Stack =
@@ -57,6 +64,23 @@ component={TrainerDetailsScreen}
 
 />
 
+
+<Stack.Screen
+
+name="Profile"
+
+component={ProfileScreen}
+
+/>
+
+
+<Stack.Screen
+
+name="EditProfile"
+
+component={EditProfileScreen}
+
+/>
 
 
 </Stack.Navigator>
