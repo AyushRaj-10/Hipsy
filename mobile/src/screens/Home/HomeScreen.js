@@ -88,6 +88,22 @@ trainerId:id
 
 />
 
+<Button
+
+title="Notifications"
+
+onPress={()=>
+
+
+navigation.navigate(
+"Notifications"
+)
+
+
+}
+
+/>
+
 </View>
 
 );

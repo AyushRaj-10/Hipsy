@@ -22,6 +22,9 @@ from "../screens/Review/AddReviewScreen";
 import ReviewListScreen
 from "../screens/Review/ReviewListScreen";
 
+import NotificationScreen
+from "../screens/Notification/NotificationScreen";
+
 const Stack =
 createNativeStackNavigator();
 
@@ -79,6 +82,13 @@ component={ReviewListScreen}
 
 />
 
+<Stack.Screen
+
+name="Notifications"
+
+component={NotificationScreen}
+
+/>
 
 
 </Stack.Navigator>
