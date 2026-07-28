@@ -26,17 +26,8 @@ from "../../api/trainer.api";
 
 
 
-export default function TrainerDetailsScreen({
-route,
-navigation
-}){
-
-
-const {
-id
-}
-=
-route.params;
+export default function TrainerDetailsScreen({ route, navigation }) {
+  const id = route?.params?.id;
 
 
 
@@ -69,8 +60,13 @@ response.data
 
 
 
-if(!trainer)
-return null;
+if (!trainer) {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Loading trainer details...</Text>
+    </View>
+  );
+}
 
 
 

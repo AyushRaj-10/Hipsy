@@ -26,17 +26,8 @@ from "../../components/review/StarRating";
 
 
 
-export default function AddReviewScreen({
-route,
-navigation
-}){
-
-
-const {
-trainerId
-}
-=
-route.params;
+export default function AddReviewScreen({ route, navigation }) {
+  const trainerId = route?.params?.trainerId;
 
 
 

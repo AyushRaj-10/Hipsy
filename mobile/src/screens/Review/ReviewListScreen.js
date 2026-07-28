@@ -25,16 +25,8 @@ from "../../components/review/ReviewCard";
 
 
 
-export default function ReviewListScreen({
-route
-}){
-
-
-const {
-trainerId
-}
-=
-route.params;
+export default function ReviewListScreen({ route }) {
+  const trainerId = route?.params?.trainerId;
 
 
 
