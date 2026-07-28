@@ -35,14 +35,19 @@ export const updateProfile = async(
     data
 )=>{
 
-
     const user = await updateUser(
         id,
         data
     );
 
+    if (!user) {
+        throw new Error("User not found");
+    }
 
-    return user.select("-password");
+    const userObj = user.toObject();
+    delete userObj.password;
+
+    return userObj;
 
 };
 

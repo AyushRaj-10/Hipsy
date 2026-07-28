@@ -78,6 +78,35 @@ next(err);
 
 
 
+export const getTrainerBookings = async(
+req,res,next
+)=>{
+
+try{
+
+
+const bookings =
+await bookingService.trainerBookings(
+    req.params.trainerId
+);
+
+
+return success(
+    res,
+    "Trainer bookings fetched",
+    bookings
+);
+
+
+}
+catch(err){
+
+next(err);
+
+}
+
+};
+
 export const updateStatus = async(
 req,res,next
 )=>{
