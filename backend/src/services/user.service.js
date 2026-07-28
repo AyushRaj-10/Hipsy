@@ -1,0 +1,60 @@
+import {
+    findById,
+    updateUser,
+    deleteUser
+}
+from "../repositories/user.repository.js";
+
+
+
+export const getProfile = async(id)=>{
+
+
+    const user = await findById(id)
+        .select("-password");
+
+
+    if(!user){
+
+        throw new Error(
+            "User not found"
+        );
+
+    }
+
+
+    return user;
+
+};
+
+
+
+
+export const updateProfile = async(
+    id,
+    data
+)=>{
+
+
+    const user = await updateUser(
+        id,
+        data
+    );
+
+
+    return user.select("-password");
+
+};
+
+
+
+
+export const removeAccount = async(id)=>{
+
+
+    await deleteUser(id);
+
+
+    return true;
+
+};
