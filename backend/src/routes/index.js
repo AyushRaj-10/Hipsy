@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import authRoutes from "./auth.routes.js";
 import userRoutes from "./user.routes.js";
-
+import trainerRoutes from "./trainer.routes.js";
 
 const router = Router();
 
@@ -18,5 +18,9 @@ router.use(
     userRoutes
 );
 
+router.use(
+"/trainers",
+trainerRoutes
+);
 
 export default router;
