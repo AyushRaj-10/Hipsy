@@ -8,6 +8,14 @@ import HomeScreen
 from "../screens/Home/HomeScreen";
 
 
+import TrainerListScreen
+from "../screens/Trainer/TrainerListScreen";
+
+
+import TrainerDetailsScreen
+from "../screens/Trainer/TrainerDetailsScreen";
+
+
 
 const Stack =
 createNativeStackNavigator();
@@ -31,10 +39,28 @@ component={HomeScreen}
 />
 
 
+<Stack.Screen
+
+name="TrainerList"
+
+component={TrainerListScreen}
+
+/>
+
+
+
+<Stack.Screen
+
+name="TrainerDetails"
+
+component={TrainerDetailsScreen}
+
+/>
+
+
+
 </Stack.Navigator>
 
-
 );
-
 
 }

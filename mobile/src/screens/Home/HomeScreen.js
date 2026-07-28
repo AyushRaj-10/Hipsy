@@ -3,12 +3,16 @@ import React from "react";
 
 import {
 View,
+Button,
 Text
 }
 from "react-native";
 
 
-export default function HomeScreen(){
+
+export default function HomeScreen({
+navigation
+}){
 
 
 return (
@@ -23,9 +27,27 @@ Welcome to Hipsy
 </Text>
 
 
+
+<Button
+
+title="Find Trainers"
+
+onPress={()=>
+
+
+navigation.navigate(
+"TrainerList"
+)
+
+
+}
+
+/>
+
+
+
 </View>
 
 );
-
 
 }
