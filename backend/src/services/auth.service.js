@@ -30,8 +30,11 @@ export const register = async (data) => {
     role: user.role
   });
 
+  const safeUser = user.toObject();
+  delete safeUser.password;
+
   return {
-    user,
+    user: safeUser,
     token
   };
 
@@ -59,8 +62,11 @@ export const login = async (data) => {
     role: user.role
   });
 
+  const safeUser = user.toObject();
+  delete safeUser.password;
+
   return {
-    user,
+    user: safeUser,
     token
   };
 

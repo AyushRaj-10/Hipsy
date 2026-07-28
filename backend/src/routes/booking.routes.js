@@ -41,6 +41,12 @@ auth,
 controller.myBookings
 );
 
+router.get(
+"/trainer/:trainerId",
+auth,
+controller.getTrainerBookings
+);
+
 
 
 router.patch(
