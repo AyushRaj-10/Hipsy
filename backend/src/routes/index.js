@@ -4,6 +4,7 @@ import authRoutes from "./auth.routes.js";
 import userRoutes from "./user.routes.js";
 import trainerRoutes from "./trainer.routes.js";
 import bookingRoutes from "./booking.routes.js";
+import reviewRoutes from "./review.routes.js";
 
 const router = Router();
 
@@ -27,6 +28,11 @@ trainerRoutes
 router.use(
 "/bookings",
 bookingRoutes
+);
+
+router.use(
+"/reviews",
+reviewRoutes
 );
 
 export default router;
