@@ -6,6 +6,8 @@ import trainerRoutes from "./trainer.routes.js";
 import bookingRoutes from "./booking.routes.js";
 import reviewRoutes from "./review.routes.js";
 import uploadRoutes from "./upload.routes.js";
+import notificationRoutes 
+from "./notification.routes.js";
 
 const router = Router();
 
@@ -39,6 +41,11 @@ reviewRoutes
 router.use(
 "/upload",
 uploadRoutes
+);
+
+router.use(
+"/notifications",
+notificationRoutes
 );
 
 export default router;
