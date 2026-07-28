@@ -44,7 +44,49 @@ navigation.navigate(
 
 />
 
+<Button
 
+title="View Reviews"
+
+onPress={()=>
+
+
+navigation.navigate(
+
+"ReviewList",
+
+{
+trainerId:id
+}
+
+)
+
+
+}
+
+/>
+
+<Button
+
+title="Give Review"
+
+onPress={()=>
+
+
+navigation.navigate(
+
+"AddReview",
+
+{
+trainerId:id
+}
+
+)
+
+
+}
+
+/>
 
 </View>
 

@@ -15,7 +15,12 @@ from "../screens/Trainer/TrainerListScreen";
 import TrainerDetailsScreen
 from "../screens/Trainer/TrainerDetailsScreen";
 
+import AddReviewScreen
+from "../screens/Review/AddReviewScreen";
 
+
+import ReviewListScreen
+from "../screens/Review/ReviewListScreen";
 
 const Stack =
 createNativeStackNavigator();
@@ -54,6 +59,23 @@ component={TrainerListScreen}
 name="TrainerDetails"
 
 component={TrainerDetailsScreen}
+
+/>
+
+<Stack.Screen
+
+name="AddReview"
+
+component={AddReviewScreen}
+
+/>
+
+
+<Stack.Screen
+
+name="ReviewList"
+
+component={ReviewListScreen}
 
 />
 
