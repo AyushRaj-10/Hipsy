@@ -15,13 +15,6 @@ from "../screens/Trainer/TrainerListScreen";
 import TrainerDetailsScreen
 from "../screens/Trainer/TrainerDetailsScreen";
 
-import CreateBookingScreen
-from "../screens/Booking/CreateBookingScreen";
-
-
-import MyBookingsScreen
-from "../screens/Booking/MyBookingsScreen";
-
 
 
 const Stack =
@@ -64,23 +57,6 @@ component={TrainerDetailsScreen}
 
 />
 
-
-<Stack.Screen
-
-name="CreateBooking"
-
-component={CreateBookingScreen}
-
-/>
-
-
-<Stack.Screen
-
-name="MyBookings"
-
-component={MyBookingsScreen}
-
-/>
 
 
 </Stack.Navigator>

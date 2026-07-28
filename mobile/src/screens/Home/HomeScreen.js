@@ -44,20 +44,6 @@ navigation.navigate(
 
 />
 
-<Button
-
-title="My Bookings"
-
-onPress={()=>
-
-navigation.navigate(
-"MyBookings"
-)
-
-}
-
-/>
-
 
 
 </View>
