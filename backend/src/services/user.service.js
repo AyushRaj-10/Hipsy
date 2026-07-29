@@ -9,9 +9,7 @@ from "../repositories/user.repository.js";
 
 export const getProfile = async(id)=>{
 
-
-    const user = await findById(id)
-        .select("-password");
+    const user = await findById(id);
 
 
     if(!user){
@@ -23,7 +21,10 @@ export const getProfile = async(id)=>{
     }
 
 
-    return user;
+    const userObj = user.toObject();
+    delete userObj.password;
+
+    return userObj;
 
 };
 

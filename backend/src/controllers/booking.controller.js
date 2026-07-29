@@ -50,7 +50,6 @@ req,res,next
 
 try{
 
-
 const bookings =
 await bookingService.myBookings(
     req.user.id
@@ -83,6 +82,10 @@ req,res,next
 )=>{
 
 try{
+
+await bookingService.syncExpiredBookings({
+    trainerId: req.params.trainerId
+});
 
 
 const bookings =

@@ -12,6 +12,12 @@ export const updateProfileSchema = z.object({
         .optional(),
 
 
+    profileImage:z.string()
+        .url()
+        .or(z.literal(""))
+        .optional(),
+
+
     age:z.number()
         .optional(),
 

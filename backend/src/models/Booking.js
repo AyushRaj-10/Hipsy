@@ -35,7 +35,8 @@ const bookingSchema = new mongoose.Schema(
             "PENDING",
             "ACCEPTED",
             "REJECTED",
-            "CANCELLED"
+            "CANCELLED",
+            "EXPIRED"
         ],
         default:"PENDING"
     },
@@ -54,6 +55,12 @@ const bookingSchema = new mongoose.Schema(
             "PAID"
         ],
         default:"UNPAID"
+    },
+
+
+    reminderSentAt:{
+        type:Date,
+        default:null
     }
 
 },

@@ -24,7 +24,8 @@ export const updateUser = async(
         id,
         data,
         {
-            new:true
+            new:true,
+            runValidators:true
         }
     );
 

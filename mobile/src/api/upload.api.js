@@ -1,19 +1,26 @@
 import API from "./axios";
 
+const unwrap = (response) => response.data?.data ?? response.data;
+
 
 export const uploadProfileImage = async(image)=>{
 
 
 const formData = new FormData();
 
+const payload =
+    image?.uri
+        ? {
+            uri: image.uri,
+            name: image.name || "profile.jpg",
+            type: image.type || "image/jpeg"
+        }
+        : image;
+
 
 formData.append(
     "image",
-    {
-        uri:image.uri,
-        name:"profile.jpg",
-        type:"image/jpeg"
-    }
+    payload
 );
 
 
@@ -25,21 +32,10 @@ await API.post(
 
 formData,
 
-{
-
-headers:{
-
-"Content-Type":
-"multipart/form-data"
-
-}
-
-}
-
 );
 
 
-return response.data;
+return unwrap(response);
 
 
 };

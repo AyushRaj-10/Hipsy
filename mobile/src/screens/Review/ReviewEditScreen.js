@@ -2,70 +2,48 @@ import React, { useState } from "react";
 import { Alert, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import Button from "../../components/common/Button";
-import EmptyState from "../../components/common/EmptyState";
 import ErrorMessage from "../../components/common/ErrorMessage";
 import Input from "../../components/common/Input";
 import StarRating from "../../components/review/StarRating";
-import { addReview } from "../../api/review.api";
+import { updateReview } from "../../api/review.api";
 import { AppTheme } from "../../theme";
 
-export default function AddReviewScreen({ route, navigation }) {
-  const trainerId = route?.params?.trainerId;
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
+export default function ReviewEditScreen({ route, navigation }) {
+  const { review } = route.params;
+  const [rating, setRating] = useState(review.rating);
+  const [comment, setComment] = useState(review.comment);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const goToTrainers = () => {
-    navigation.navigate("Tabs", { screen: "TrainerList" });
-  };
-
-  const submit = async () => {
-    if (!trainerId) {
-      setError("Pick a trainer before leaving a review.");
-      return;
-    }
-
-    if (!rating) {
-      setError("Please choose a rating.");
-      return;
-    }
-
-    if (!comment.trim()) {
-      setError("Please add a comment.");
+  const save = async () => {
+    if (!rating || !comment.trim()) {
+      setError("Please fill in both the rating and comment.");
       return;
     }
 
     try {
       setLoading(true);
       setError("");
-      await addReview({ trainerId, rating, comment });
-      Alert.alert("Review added", "Thanks for sharing your feedback.");
+      await updateReview(review._id, {
+        trainerId: review.trainerId?._id || review.trainerId,
+        rating,
+        comment,
+      });
+      Alert.alert("Review updated", "Your feedback has been saved.");
       navigation.goBack();
     } catch (err) {
-      setError(err?.response?.data?.message || "Unable to submit review.");
+      setError(err?.response?.data?.message || "Unable to update review.");
     } finally {
       setLoading(false);
     }
   };
 
-  if (!trainerId) {
-    return (
-      <EmptyState
-        title="No trainer selected"
-        description="Open a trainer profile first, then come back to leave feedback."
-        actionLabel="Browse trainers"
-        onAction={goToTrainers}
-      />
-    );
-  }
-
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
         <View style={styles.card}>
-          <Text style={styles.heading}>Rate your session</Text>
-          <Text style={styles.subtitle}>Your feedback helps other people choose confidently.</Text>
+          <Text style={styles.heading}>Edit review</Text>
+          <Text style={styles.subtitle}>Make quick changes to your feedback.</Text>
 
           <ErrorMessage message={error} />
 
@@ -76,13 +54,12 @@ export default function AddReviewScreen({ route, navigation }) {
 
           <Input
             label="Comment"
-            placeholder="Tell us what stood out..."
-            multiline
             value={comment}
             onChangeText={setComment}
+            multiline
           />
 
-          <Button title="Submit review" onPress={submit} loading={loading} />
+          <Button title="Save review" onPress={save} loading={loading} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -96,8 +73,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flexGrow: 1,
-    padding: AppTheme.spacing.lg,
     justifyContent: "center",
+    padding: AppTheme.spacing.lg,
   },
   card: {
     backgroundColor: AppTheme.colors.surface,
@@ -115,8 +92,8 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 14,
-    lineHeight: 21,
     color: AppTheme.colors.textMuted,
+    lineHeight: 21,
   },
   ratingBlock: {
     gap: 10,

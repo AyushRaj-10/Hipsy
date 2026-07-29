@@ -1,5 +1,6 @@
 import * as notificationService
 from "../services/notification.service.js";
+import * as bookingService from "../services/booking.service.js";
 
 
 import {
@@ -17,6 +18,13 @@ next
 
 
 try{
+
+
+await bookingService.syncExpiredBookings(
+    {
+        userId: req.user.id
+    }
+);
 
 
 const notifications =
