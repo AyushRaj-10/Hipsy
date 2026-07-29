@@ -1,5 +1,7 @@
 import API from "./axios";
 
+const unwrap = (response) => response.data?.data ?? response.data;
+
 
 export const getProfile = async()=>{
 
@@ -8,7 +10,7 @@ export const getProfile = async()=>{
         "/users/profile"
     );
 
-    return response.data;
+    return unwrap(response);
 
 };
 
@@ -22,6 +24,15 @@ export const updateProfile = async(data)=>{
         data
     );
 
-    return response.data;
+    return unwrap(response);
 
+};
+
+export const deleteAccount = async()=>{
+    const response =
+    await API.delete(
+        "/users/account"
+    );
+
+    return unwrap(response);
 };

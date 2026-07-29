@@ -14,9 +14,16 @@ export const getUserBookings = async(userId)=>{
     return Booking.find({
         userId
     })
-    .populate(
-        "trainerId"
-    );
+    .populate({
+        path:"trainerId",
+        populate:{
+            path:"userId",
+            select:"name email profileImage"
+        }
+    })
+    .sort({
+        date:-1
+    });
 
 };
 
@@ -30,7 +37,10 @@ export const getTrainerBookings = async(trainerId)=>{
     .populate(
         "userId",
         "name email profileImage"
-    );
+    )
+    .sort({
+        date:-1
+    });
 
 };
 

@@ -1,5 +1,7 @@
 import API from "./axios";
 
+const unwrap = (response) => response.data?.data ?? response.data;
+
 
 export const getNotifications = async()=>{
 
@@ -10,7 +12,7 @@ export const getNotifications = async()=>{
     );
 
 
-    return response.data;
+    return unwrap(response);
 
 };
 
@@ -27,7 +29,7 @@ export const markNotificationRead = async(id)=>{
     );
 
 
-    return response.data;
+    return unwrap(response);
 
 };
 
@@ -44,6 +46,6 @@ export const deleteNotification = async(id)=>{
     );
 
 
-    return response.data;
+    return unwrap(response);
 
 };

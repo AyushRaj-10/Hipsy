@@ -1,42 +1,16 @@
-import React,{
-useContext
-}
-from "react";
+import React, { useContext } from "react";
 
+import AuthNavigator from "./AuthNavigator";
+import MainNavigator from "./MainNavigator";
+import { AuthContext } from "../context/AuthContext";
+import Loader from "../components/common/Loader";
 
-import AuthNavigator
-from "./AuthNavigator";
+export default function RootNavigator() {
+  const { token, loading } = useContext(AuthContext);
 
+  if (loading) {
+    return <Loader label="Waking up your Hipsy account..." />;
+  }
 
-import MainNavigator
-from "./MainNavigator";
-
-
-import {
-AuthContext
-}
-from "../context/AuthContext";
-
-
-
-export default function RootNavigator(){
-
-
-const {
-token
-}
-=
-useContext(AuthContext);
-
-
-
-return token ?
-
-<MainNavigator/>
-
-:
-
-<AuthNavigator/>;
-
-
+  return token ? <MainNavigator /> : <AuthNavigator />;
 }

@@ -9,7 +9,13 @@ import errorHandler from "./middleware/errorHandler.js";
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
+
 
 app.use(helmet());
 

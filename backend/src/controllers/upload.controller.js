@@ -1,69 +1,34 @@
-import {
-uploadImage
-}
-from "../services/upload.service.js";
-
-
+import { uploadImage } from "../services/upload.service.js";
 import User from "../models/User.js";
+import { success } from "../utils/response.js";
 
+export const uploadProfileImage = async (req, res, next) => {
+  try {
+    if (!req.file) {
+      throw new Error("No image file received");
+    }
 
-import {
-success
-}
-from "../utils/response.js";
+    const result = await uploadImage(req.file);
 
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      {
+        profileImage: result.secure_url,
+      },
+      {
+        new: true,
+      }
+    );
 
+    if (!user) {
+      throw new Error("User not found");
+    }
 
-export const uploadProfileImage = async(
-req,
-res,
-next
-)=>{
+    const userObj = user.toObject();
+    delete userObj.password;
 
-
-try{
-
-
-const result =
-await uploadImage(
-req.file
-);
-
-
-
-const user =
-await User.findByIdAndUpdate(
-
-req.user.id,
-
-{
-
-profileImage:
-result.secure_url
-
-},
-
-{
-new:true
-}
-
-)
-.select("-password");
-
-
-
-return success(
-res,
-"Profile image uploaded",
-user
-);
-
-
-}
-catch(err){
-
-next(err);
-
-}
-
+    return success(res, "Profile image uploaded", userObj);
+  } catch (err) {
+    next(err);
+  }
 };

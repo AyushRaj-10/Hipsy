@@ -1,5 +1,7 @@
 import API from "./axios";
 
+const unwrap = (response) => response.data?.data ?? response.data;
+
 
 export const registerUser = async(data)=>{
 
@@ -11,7 +13,7 @@ export const registerUser = async(data)=>{
     );
 
 
-    return response.data;
+    return unwrap(response);
 
 };
 
@@ -28,6 +30,6 @@ export const loginUser = async(data)=>{
     );
 
 
-    return response.data;
+    return unwrap(response);
 
 };
